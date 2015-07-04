@@ -1,0 +1,56 @@
+buildscript {
+    ext {
+        springBootVersion = '1.2.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:0.5.1.RELEASE")
+    }
+}
+group 'com.i'
+version '1.0-SNAPSHOT'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.springframework.boot:spring-boot-starter-data-rest")
+    compile("org.springframework.boot:spring-boot-starter-integration")
+//    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.projectlombok:lombok:1.16.2")
+    compile("org.influxdb:influxdb-java:1.5")
+//    runtime("com.h2database:h2")
+//    compile("io.netty:netty-all:4.0.29.Final")
+//    compile('com.mysema.querydsl:querydsl-apt:3.6.5')
+//    compile('com.mysema.querydsl:querydsl-mongodb:3.6.5')
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+jar {
+    baseName = 'SmartFactory'
+    version =  '0.1.0'
+}
+
+bootRepackage {
+    mainClass = 'com.i.MainApplication'
+}
